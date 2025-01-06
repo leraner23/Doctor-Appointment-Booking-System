@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" th:href="@{/DoctorSeeAppointmentStyle.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="~{${Doctornavbar}}"> </div>
+<div class="main-container">
+
+
+
+    <div class="content">
+
+
+        <header class="header">
+            <h1 th:text="${'Welcome, Doctor ' + user.username}"></h1>
+        </header>
+
+
+        <section class="appointments-section">
+        <h2> Today's appointment</h2>
+        <div th:if="${todayDoctorAppointments.isEmpty()}">
+            <p>No Data of Appointments for Today.</p>
+        </div>
+
+        <table class="appointments-table">
+            <thead>
+            <tr>
+
+                <th>Patient Name</th>
+                <th>Appointment Date</th>
+                <th>Time</th>
+                <th>Problem</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="todayappointment : ${todayDoctorAppointments}">
+
+                <td th:text="${todayappointment.patient.user.fullName}"></td>
+                <td th:text="${todayappointment.date}"></td>
+                <td th:text="${todayappointment.bookedTime}"></td>
+                <td th:text="${todayappointment.problem}"></td>
+                <td th:text="${todayappointment.status}"></td>
+                <td>
+
+                    <div th:if="${#strings.equals(todayappointment.status.name(), 'PENDING')}">
+                        <form  th:action="@{/appointment/accept}" method="post">
+                            <input type="hidden" name="appointment_id" th:value="${todayappointment.appointment_id}"/>
+                            <button class="btn accept" >  <i class="fa-regular fa-calendar-check"></i> Accept</button>
+                        </form>
+                    </div>
+                    <div th:if="${#strings.equals(todayappointment.status.name(), 'PENDING')}">
+                        <form th:action="@{/appointment/reject}" method="post">
+                            <input type="hidden" name="appointment_id" th:value="${todayappointment.appointment_id}"/>
+                            <button class="btn reject" >  <i class="fa-regular fa-calendar-xmark"></i> Reject</button>
+                        </form>
+                    </div>
+                    <div th:if="${#strings.equals(todayappointment.status.name(),'APPROVED')}">
+                        <form th:action="@{/appointment/complete}" method="post">
+                            <input type="hidden" name="appointment_id" th:value="${todayappointment.appointment_id}"/>
+                            <button class="btn complete" >   <i class="fa-solid fa-circle-check"></i> Complete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        </section>
+    </div>
+</div>
+</body>
+</html>

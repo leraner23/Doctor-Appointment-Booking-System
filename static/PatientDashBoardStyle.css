@@ -1,0 +1,161 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #3f51b5;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .profile-image {
+    margin-bottom: 15px;
+}
+
+.navbar .profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+.navbar .Name h1 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.navbar .nav-links li {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.navbar .nav-links li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    text-align: left;
+    transition: background 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+    background-color: #5c6bc0;
+    border-radius: 5px;
+}
+
+.dashboard {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.header {
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #5c6bc0;
+}
+
+.appointments-section {
+    margin-top: 20px;
+
+}
+
+.appointments-section h2 {
+    color: #3f51b5;
+    margin-bottom: 10px;
+
+}
+
+.appointment-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display:flex;
+        gap:23px
+}
+
+.appointment-card.past {
+    opacity: 0.7;
+}
+
+.appointment-card p {
+    margin: 5px 0;
+}
+
+.btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e53935;
+}
+
+

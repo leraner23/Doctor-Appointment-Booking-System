@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Doctor Navbar</title>
+    <link rel="stylesheet" href="/DoctorNavStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+<body>
+
+<div th:fragment="Doctornavbar">
+<nav class="navbar">
+    <div class="profile-image">
+            <img th:src="@{'/images/'+${user.profile}}" />
+    </div>
+    <div class="Name"><h2 th:text="${user.fullName}"></h2></div>
+    <ul class="nav-links">
+        <li><a th:href="@{/}">  <i class="fas fa-house"></i>  Home</a></li>
+        <li><a th:href="@{/doctor/profile/{userId}(userId=${user.userId})}"> <i class="fa-solid fa-address-card"></i>  Profile</a></li>
+        <li><a  th:href="@{/user/DoctorDashboard}"> <i class="fa-regular fa-chart-bar"></i> Dashboard </a></li>
+
+        <li class="dropdown">
+            <a th:href="@{/appointment/doctorAppointment_details/{userId}(userId=${user.userId})}"><i class="fa-regular fa-rectangle-list"></i> Appointments</a>
+            <div class="dropdown-content">
+                <a th:href="@{/appointment/todayDoctor_appointments/{userId}(userId=${user.userId})}">Today's Appointments</a>
+                <a th:href="@{/appointment/doctorAppointment_details/{userId}(userId=${user.userId})}">All Appointments</a>
+                <a th:href="@{/appointment/pastDoctorAppointment_details/{userId}(userId=${user.userId})}">Past Appointments</a>
+            </div>
+        </li>
+
+        <li><a th:href="@{/user/logout}"> <i class="fa-solid fa-arrow-right-from-bracket"> </i> Logout </a></li>
+    </ul>
+</nav>
+</div>
+</body>
+</html>

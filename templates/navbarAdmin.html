@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Admin Dashboard</title>
+    <link rel="stylesheet" href="/NavbarStyleAdmin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+    <body>
+    <div th:fragment="navbar">
+
+    <aside class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a  th:href="@{/}"> <i class="fa-solid fa-house-chimney"></i> Home</a></li>
+            <li><a  th:href="@{/user/AdminDashBoard}"> <i class="fa-regular fa-chart-bar"></i> Dashboard </a></li>
+            <li><a  th:href="@{/admin/profile/{userId}(userId=${user.userId})}"> <i class="fa-solid fa-user-tie"></i> Profile</a></li>
+            <li><a  th:href="@{/doctor/doctor_details/{userId}(userId=${user.userId})}"> <i class="fa-solid fa-user-doctor"></i> Doctors</a></li>
+            <li><a  th:href="@{/patient/patient_details/{userId}(userId=${user.userId})}"> <i class="fa-solid fa-bed"></i> Patients</a></li>
+<!--            <li><a  th:href="@{/appointment/appointment_details/{userId}(userId=${user.userId})}"><i class="fa-regular fa-rectangle-list"></i>  Appointments</a></li>-->
+            <li class="dropdown">
+                <a th:href="@{/appointment/appointment_details/{userId}(userId=${user.userId})}"><i class="fa-regular fa-rectangle-list"></i> Appointments</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/appointment/todays_appointments/{userId}(userId=${user.userId})}">Today's Appointments</a>
+                    <a th:href="@{/appointment/appointment_details/{userId}(userId=${user.userId})}">All Appointments</a>
+                    <a th:href="@{/appointment/past_appointments/{userId}(userId=${user.userId})}">Past Appointments</a>
+                </div>
+            </li>
+
+            <li><a  th:href="@{/user/logout}"> <i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+    </div>
+
+    </body>
+</html>

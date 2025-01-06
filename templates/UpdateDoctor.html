@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update your Profile </title>
+    <link rel="stylesheet" href="/UpdateDoctorStyle.css">
+</head>
+<body>
+<div class="form-container">
+    <h2>Update your profile</h2>
+    <form th:action="@{/doctor/updateYourProfile/{userId}(userId=${userId})}"  th:object="${doctor}" method="post">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" th:value="${doctor.user.fullName}" readonly>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" th:value="${doctor.user.username}" readonly>
+
+        <label for="email">Email</label>
+        <input type="email" id="email"  th:value="${doctor.user.email}" readonly>
+
+        <label for="age">Age</label>
+        <input type="number" id="age" th:value="${doctor.user.age}" readonly>
+
+        <label for="contact">Contact Number</label>
+        <input type="tel" id="contact" th:value="${doctor.user.contact}" readonly>
+
+        <label for="specialization">Specialization</label>
+        <select id="specialization" th:field="*{specialization}" required>
+            <option value=""  disabled>Select Specialization</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Neurologist">Neurologist</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Orthopedic">Orthopedic</option>
+            <option value="Pediatrician">Pathologist</option>
+            <option value="Pediatrician">Surgeon</option>
+            <option value="Pediatrician">Gynaecologist</option>
+            <option value="Pediatrician">Pediatrician</option>
+
+        </select>
+
+        <label for="experience">Experience</label>
+        <select id="experience" th:field="*{experience}" required>
+            <option value="" disabled selected>Select Experience</option>
+            <option value="1year">1 year</option>
+            <option value="2years">2 years</option>
+            <option value="3years">3 years</option>
+            <option value="4years">4 years</option>
+            <option value="5years">5 years</option>
+            <option value="6years">6 years</option>
+            <option value="More than 6 years">More than 6 years</option>
+        </select>
+
+        <label for="qualification">Qualification</label>
+        <select id="qualification" th:field="*{qualification}" required>
+            <option value="" disabled selected>Select Qualification</option>
+            <option value="MBBS">MBBS</option>
+            <option value="PHD">PhD</option>
+            <option value="DPM">DPM</option>
+            <option value="DCH">DCH</option>
+            <option value="MS">MS</option>
+            <option value="MD">MD</option>
+            <option value="BHMS">BHMS</option>
+        </select>
+
+
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+</body>
+</html>

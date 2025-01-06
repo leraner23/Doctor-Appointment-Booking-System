@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" th:href="@{/DoctorStyleDashboard.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="~{${Doctornavbar}}"> </div>
+<div class="main-container">
+
+    <h1>Dashboard</h1>
+
+    <div class="content">
+        <header class="header">
+            <h1 th:text="${'Welcome, Doctor ' + user.username}"></h1>
+        </header>
+
+
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Appointments</h3>
+                    <p th:text="${totalAppointments}"></p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Today's Approved Appointments</h3>
+                <p th:text="${totalTodayApprovedAppointments}"></p>
+            </div>
+
+            <div class="stat-card">
+                <h3> Total Appointments Done</h3>
+                <p th:text="${totalAppointmentsDone}"></p>
+            </div>
+
+<!--            <div class="stat-card">-->
+<!--                <h3>Today's total Appointments</h3>-->
+<!--                <p th:text="${totalTodayAppointments}"></p>-->
+<!--            </div>-->
+
+    </div>
+</div>
+</div>
+</body>
+</html>

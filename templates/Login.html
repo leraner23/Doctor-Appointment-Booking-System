@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" th:href="@{/loginStyle.css}">
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form th:action="@{/user/login}" th:object="${loginRequest}" method="post">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="role">Role</label>-->
+<!--            <select id="role" required>-->
+<!--                <option value="" disabled selected>Select a role</option>-->
+<!--                <option value="PATIENTS">Patient</option>-->
+<!--                <option value="DOCTOR">Doctor</option>-->
+<!--                <option value="ADMIN">Admin</option>-->
+<!--            </select>-->
+<!--        </div>-->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="login-button">Login</button>
+    </form>
+    <div th:if="${error}" class="error-message" th:text="${error}"></div>
+</div>
+</body>
+</html>

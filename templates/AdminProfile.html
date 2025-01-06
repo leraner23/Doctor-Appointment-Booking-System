@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Admin Profile</title>
+    <link rel="stylesheet" th:href="@{/AdminProfileStyle.css}">
+</head>
+<body>
+
+<div th:replace="~{${navbar}}"> </div>
+
+
+<div class="profile-image">
+    <img th:src="@{'/images/'+${user.profile}}" />
+</div>
+
+
+<header class="header">
+    <h1 th:text="${user.username}"></h1>
+</header>
+
+<div class="contain">
+
+    <h2 th:text="${ 'FullName: ' + user.fullName}"></h2>
+    <h2 th:text="${'UserName: ' + user.username}"></h2>
+    <h2 th:text="${ 'Email:' + user.email}"></h2>
+    <h2 th:text="${ 'Age: ' + user.age}"></h2>
+    <h2 th:text="${ 'Gender: ' + user.gender}"></h2>
+    <h2 th:text="${ 'Phone Number: ' + user.contact}"></h2>
+</div>
+</body>
+</html>

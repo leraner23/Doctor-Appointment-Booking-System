@@ -1,0 +1,155 @@
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Patient Dashboard</title>-->
+<!--    <link rel="stylesheet" th:href="@{/PatientDashBoardStyle.css}">-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar">-->
+<!--    <div class="profile-image">-->
+<!--        <img th:src="@{'/images/'+${user.profile}}" />-->
+<!--    </div>-->
+<!--    <div class="Name"><h1 th:text="${user.fullName}"></h1></div>-->
+<!--    <ul class="nav-links">-->
+<!--        <li><a  th:href="@{/user/home}">Home</a></li>-->
+<!--        <li><a th:href="@{/appointment/Book/{userId}(userId=${user.userId})}">Book Appointment</a></li>-->
+<!--        <li><a  th:href="@{/appointments/check}">Check Appointments</a></li>-->
+<!--        <li><a th:href="@{/user/logout}">Logout</a></li>-->
+<!--    </ul>-->
+<!--</nav>-->
+<!--    <main class="dashboard">-->
+<!--          <header class="welcome-section">-->
+<!--        <h1 th:text="${'Welcome  '+ user.username}"></h1>-->
+<!--       </header>-->
+<!--    -->
+<!--        <section class="search-section">-->
+<!--           <div class="search-bar">-->
+<!--            <input type="text" placeholder="Search for doctors, appointments..." />-->
+<!--            <button>Search</button>-->
+<!--            </div>-->
+<!--        </section>-->
+
+
+<!--       <section class="appointments-section">-->
+<!--        <h2> Appointments</h2>-->
+<!--        <div th:if="${appointments.isEmpty()}">-->
+<!--            <p>No upcoming appointments.</p>-->
+<!--        </div>-->
+
+<!--        <div th:each="appointment : ${appointments}" class="appointment-card">-->
+<!--            <p><strong>Date:</strong> <span th:text="${appointment.date}">Date</span></p>-->
+<!--            <p><strong>Time:</strong> <span th:text="${appointment.bookedTime}">Time</span></p>-->
+<!--            <p><strong>Doctor Name:</strong> <span th:text="${appointment.doctor.user.fullName}">Doctor Name</span></p>-->
+<!--            <p><strong>Specialty:</strong> <span th:text="${appointment.doctor.specialization}">Specialty</span></p>-->
+<!--            <p><strong>Status:</strong> <span th:text="${appointment.status}">Specialty</span></p>-->
+
+<!--                <form th:action="@{/appointment/cancel}" method="post">-->
+<!--                   <input type="hidden" name="appointment_id" th:value="${appointment.appointment_id}"  onsubmit="disableButton(this)">-->
+<!--                    <button class="cancel-btn" th:disabled="${appointment.status == 'CANCELED'}"-->
+<!--                        th:text="${appointment.status == 'CANCELED' ? 'Cancelled' : 'Cancel Appointment'}" > </button>-->
+<!--                </form>-->
+<!--        </div>-->
+<!--    </main>-->
+<!--<script>-->
+
+<!--    function disableButton(form) {-->
+<!--        const button = form.querySelector('button');-->
+<!--        button.disabled = true;-->
+<!--        button.textContent = "Cancelled";-->
+<!--    }-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patient Dashboard</title>
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" th:href="@{/PatientDashBoardStyle.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="profile-image">
+        <img th:src="@{'/images/'+${user.profile}}" alt="Profile Image"/>
+    </div>
+    <div class="Name"><h1 th:text="${user.fullName}"></h1></div>
+    <ul class="nav-links">
+        <li><a th:href="@{/}"><i class="fas fa-house"></i>  Home</a></li>
+        <li><a th:href="@{/appointment/Book/{userId}(userId=${user.userId})}"> <i class="fa-regular fa-calendar-days"></i> Book Appointment</a></li>
+        <li><a href="#appointments-section"> <i class="fa-solid fa-list"></i> Check Appointments</a></li>
+        <li><a th:href="@{/user/logout}"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+    </ul>
+</nav>
+
+<main class="dashboard">
+    <header class="welcome-section">
+        <h1 th:text="${'Welcome ' + user.username}"></h1>
+    </header>
+
+
+
+    <section  id="appointments-section"  class="appointments-section">
+        <h2>Appointments</h2>
+        <div th:if="${appointments.isEmpty()}">
+            <p>No appointments done.</p>
+        </div>
+
+
+        <div th:each="appointment : ${appointments}" class="appointment-card">
+            <div>
+            <p><strong>Date:</strong> <span th:text="${appointment.date}">Date</span></p>
+            <p><strong>Time:</strong> <span th:text="${appointment.bookedTime}">Time</span></p>
+            <p><strong>Doctor Name:</strong> <span th:text="${appointment.doctor.user.fullName}">Doctor Name</span></p>
+            <p><strong>Specialty:</strong> <span th:text="${appointment.doctor.specialization}">Specialty</span></p>
+            <p><strong>Status:</strong> <span th:text="${appointment.status}">Status</span></p>
+            </div>
+
+
+             <div>
+            <div th:if="${#strings.equals(appointment.status.name(), 'PENDING')}">
+            <form th:action="@{/appointment/cancel}" method="post" >
+                <input type="hidden" name="appointment_id" th:value="${appointment.appointment_id}"/>
+                <button class="btn" name="action"> <i class="fa-solid fa-xmark"></i>  Cancel </button>
+            </form>
+            </div>
+
+            <form th:action="@{/appointment/delete}" method="post" >
+                <input type="hidden" name="appointment_id" th:value="${appointment.appointment_id}"/>
+                <button class="btn" name="action"> <i class="fa-solid fa-trash-can"></i>  Delete </button>
+            </form>
+           </div>
+
+
+
+<!--        <div th:if="${#strings.equals(appointment.status.name(), 'COMPLETED')}">-->
+
+<!--            <div th:if="${reviewingAppointmentId == appointment.appointment_id}">-->
+<!--            <form th:action="@{/appointment/review}" method="post" >-->
+<!--                <input type="hidden" name="appointment_id" th:value="${appointment.appointment_id}"/>-->
+<!--                <textarea name="reviewText" rows="4" cols="40" placeholder="Write your review here..." required></textarea>-->
+<!--                <button class="btn" name="action"> <i class="fa-solid fa-reply"></i>  Review </button>-->
+<!--            </form>-->
+<!--            </div>-->
+
+<!--            <div th:if="${reviewingAppointmentId != appointment.appointment_id}">-->
+<!--                <form th:action="@{/appointment/start-review}" method="post">-->
+<!--                    <input type="hidden" name="appointment_id" th:value="${appointment.appointment_id}" />-->
+<!--                    <button class="btn" name="action"><i class="fa-solid fa-reply"></i> Review</button>-->
+<!--                </form>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+        </div>
+
+<!--            </div>-->
+    </section>
+</main>
+
+</body>
+</html>
+
+
+

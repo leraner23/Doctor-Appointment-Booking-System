@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Appointment Lists </title>
+    <link rel="stylesheet" href="/AppointmentListsStyle.css">
+</head>
+<body>
+<div th:replace="~{${navbar}}"> </div>
+
+<div class="lists">
+    <section  id="appointment-section"  class="appointment-section">
+        <h2>Appointment Lists</h2>
+        <div th:if="${appointments.isEmpty()}">
+            <p>No Data of Appointments.</p>
+        </div>
+
+        <table class="appointments-table">
+            <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Patient Name</th>
+                <th>Appointment Date</th>
+                <th>Time</th>
+                <th>Problem</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="appointment : ${appointments}">
+                <td th:text="${appointment.appointment_id}"></td>
+                <td th:text="${appointment.patient.user.fullName}"></td>
+                <td th:text="${appointment.date}"></td>
+                <td th:text="${appointment.bookedTime}"></td>
+                <td th:text="${appointment.problem}"></td>
+                <td th:text="${appointment.status}"></td>
+                <td>
+
+                    <form th:action="@{/appointment/delete}" method="post" >
+                        <input type="hidden" name="appointment_id" th:value="${appointment.appointment_id}"/>
+                        <button class="btn" name="action"> <i class="fa-solid fa-trash-can"></i>  Delete </button>
+                    </form>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </section>
+
+
+
+
+</div>
+
+</body>
+</html>

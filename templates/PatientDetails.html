@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Patient Lists </title>
+    <link rel="stylesheet" href="/PatientListsStyle.css">
+</head>
+<body>
+<div th:replace="~{${navbar}}"> </div>
+
+<h2>Patients Lists</h2>
+<div class="lists">
+    <section  id="patient-section"  class="patient-section">
+
+        <div th:if="${patients.isEmpty()}">
+            <p>No Data of Patients.</p>
+        </div>
+
+
+        <div th:each="patient : ${patients}" class="patient-card">
+            <div>
+                <div class="profile-image">
+                    <img th:src="@{'/images/'+${patient.user.profile}}" />
+                </div>
+                <p><strong>Name:</strong> <span th:text="${patient.user.fullName}"></span></p>
+                <p><strong>Address:</strong> <span th:text="${patient.user.address}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${patient.user.email}"></span></p>
+                <p><strong>Gender:</strong> <span th:text="${patient.user.gender}"></span></p>
+                <p><strong>Contact:</strong> <span th:text="${patient.user.contact}"></span></p>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

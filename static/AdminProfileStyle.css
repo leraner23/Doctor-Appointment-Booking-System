@@ -1,0 +1,191 @@
+/*
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+
+div[th\\:replace] {
+    margin-bottom: 20px;  */
+/* Prevent content from touching navbar *//*
+
+}
+
+
+.profile-image {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #007bff;
+    object-fit: cover;
+}
+
+*/
+/* Header styling *//*
+
+.header {
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.contain {
+    width: 80%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-left:30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.contain h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #343a40;
+}
+
+.contain h2 strong {
+    font-weight: bold;
+    color: #007bff;
+}
+
+
+*/
+
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Navbar placeholder */
+div[th\\:replace] {
+    margin-bottom: 20px; /* Prevent content overlap */
+}
+
+/* Profile Image */
+.profile-image {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #007bff;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-image img:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+/* Header Styling */
+.header {
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Main Container */
+.contain {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* User Information Styling */
+.contain h2 {
+    font-size: 18px;
+    margin: 15px 0;
+    color: #343a40;
+}
+
+/* Button Styling */
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Slight enlarge on hover */
+}
+
+button:active {
+    transform: scale(1); /* Reset scale when pressed */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .profile-image img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .contain h2 {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+/* Responsive Design for Larger Screens */
+@media (min-width: 1024px) {
+    .contain {
+        padding: 40px;
+    }
+}
+

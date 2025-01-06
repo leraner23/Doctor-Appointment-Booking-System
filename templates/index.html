@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Doctor Appointment </title>
+    <link rel="stylesheet" th:href="@{/indexStyle.css}">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">Hamro Doctor</div>
+        <ul class="nav-links">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a href="#doctors">Doctors</a></li>
+            <li><a href="#health-advice">Health Advice</a></li>
+            <li><a th:href="@{/user/login}">Login</a></li>
+            <li><a th:href="@{/user/create_user}">Register</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="main">
+        <h1>Welcome to AppointDoctors</h1>
+        <p>Your health, our priority. Book appointments with top doctors today!</p>
+        <button onclick="location.href='/user/create_user'">Get Started</button>
+    </section>
+
+    <section id="doctors" class="doctors">
+        <h2>Meet Our Top Doctors</h2>
+        <div class="doctor-cards">
+            <div th:each="doctor : ${doctors}" class="doctor-card">
+                <div>
+                    <div class="profile-image">
+                        <img th:src="@{'/images/'+${doctor.user.profile}}" />
+                    </div>
+                    <p><strong>Name:</strong> <span th:text="${doctor.user.fullName}"></span></p>
+                    <p><strong>Address:</strong> <span th:text="${doctor.user.address}"></span></p>
+                    <p><strong>Speciality:</strong> <span th:text="${doctor.specialization}"></span></p>
+                    <p><strong>Experience:</strong> <span th:text="${doctor.experience}"></span></p>
+                    <p><strong>Qualification:</strong> <span th:text="${doctor.qualification}"></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="health-advice" class="health-advice">
+        <h2>Health Advice</h2>
+        <div th:replace="~{${healthadvice}}"> </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2024 AppointDoctors. Sujan Saru Creater</p>
+</footer>
+</body>
+</html>

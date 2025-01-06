@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Doctor Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/AdminProfileStyle.css}">
+</head>
+<body>
+
+<div th:replace="~{${Doctornavbar}}"> </div>
+
+<div class="profile-image">
+    <img th:src="@{'/images/'+${doctor.user.profile}}" />
+</div>
+
+<header class="header">
+    <h1 th:text="${'Doctor ' +user.username}"></h1>
+</header>
+
+<div class="contain">
+    <h2 th:text="${ 'FullName: ' + doctor.user.fullName}"></h2>
+    <h2 th:text="${'UserName: ' + doctor.user.username}"></h2>
+    <h2 th:text="${ 'Email:' + doctor.user.email}"></h2>
+    <h2 th:text="${ 'Age: ' + doctor.user.age}"></h2>
+    <h2 th:text="${ 'Gender: ' + doctor.user.gender}"></h2>
+    <h2 th:text="${ 'Phone Number: ' + doctor.user.contact}"></h2>
+    <h2 th:text="${'Specialization: '+ doctor.specialization}"></h2>
+    <h2 th:text="${'Experience: '+ doctor.experience}"></h2>
+    <h2 th:text="${'Qualification: '+ doctor.qualification}"></h2>
+
+    <form th:action="@{/doctor/updateYourProfile/{userId}(userId=${user.userId})}" method="get">
+        <input type="hidden" name="doctorId" th:value="${doctor.doctorId}"/>
+        <button class="update" >  <i class="fa-solid fa-user-pen"></i> Update</button>
+    </form>
+</div>
+</body>
+</html>

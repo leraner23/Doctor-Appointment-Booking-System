@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Doctor Lists </title>
+    <link rel="stylesheet" href="/DoctorListsStyle.css">
+</head>
+<body>
+<div th:replace="~{${navbar}}"> </div>
+
+<h2>Doctors Lists</h2>
+<div class="lists">
+    <section  id="doctor-section"  class="doctor-section">
+
+        <div th:if="${doctors.isEmpty()}">
+            <p>No Data of Doctors.</p>
+        </div>
+
+
+        <div th:each="doctor : ${doctors}" class="doctor-card">
+            <div>
+                <div class="profile-image">
+                    <img th:src="@{'/images/'+${doctor.user.profile}}" />
+                </div>
+                <p><strong>Name:</strong> <span th:text="${doctor.user.fullName}"></span></p>
+                <p><strong>Address:</strong> <span th:text="${doctor.user.address}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${doctor.user.email}"></span></p>
+                <p><strong>Gender:</strong> <span th:text="${doctor.user.gender}"></span></p>
+                <p><strong>Speciality:</strong> <span th:text="${doctor.specialization}"></span></p>
+                <p><strong>Experience:</strong> <span th:text="${doctor.experience}"></span></p>
+                <p><strong>Qualification:</strong> <span th:text="${doctor.qualification}"></span></p>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

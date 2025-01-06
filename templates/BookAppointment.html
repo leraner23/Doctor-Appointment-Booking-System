@@ -1,0 +1,89 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Doctor Appointment Booking</title>
+    <link rel="stylesheet" th:href="@{/BookingDoctorStyle.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Book Your Appointment</h1>
+        <form th:action="@{/appointment/Book/{userId}(userId=${userId})}"  th:object="${appointment}" method="post">
+        <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" th:value="${patient.user.fullName}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email"  th:value="${patient.user.email}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" th:value="${patient.user.age}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="doctor"  >Select Doctor:</label>
+            <select id="doctor" name="doctorId"  required>
+                <option value="" disabled selected>Select a doctor</option>
+                <option th:each="doctor : ${doctors}"
+                        th:value="${doctor.doctorId}"
+                        th:text="${doctor.user.fullName + ' (' + doctor.specialization + ')'}">
+                </option>
+            </select>
+
+
+        </div>
+
+        <div class="form-group">
+            <label for="date">Appointment Date</label>
+            <input type="date" id="date"  th:field="*{date}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="appointment-time">Appointment Time</label>
+            <select id="appointment-time" th:field="*{bookedTime}" required>
+                <option value="" disabled selected>Select an appointment time</option>
+                <option value="9:00am">9:00 AM</option>
+                <option value="10:00am">10:00 AM</option>
+                <option value="11:00am">11:00 AM</option>
+                <option value="11:00am">12:00 AM</option>
+                <option value="2:00pm">2:00 PM</option>
+                <option value="3:00pm">3:00 PM</option>
+            </select>
+        </div>
+
+
+<!--            <div class="form-group" >-->
+<!--                <label for="address">Doctor Address</label>-->
+<!--                <input type="text" id="address" th:value="${doctor.user.address}" readonly>-->
+<!--            </div>-->
+
+        <div class="form-group">
+            <label for="problem">Problem Type:</label>
+            <select id="problem" th:field="*{problem}" required>
+                <option value="" disabled selected>Select</option>
+                <option value="general_checkup">General Checkup</option>
+                <option value="cardiology">Cardiology</option>
+                <option value="dermatology">Dermatology</option>
+                <option value="CT_scan">CT scan</option>
+                <option value="Bone_related">Bone related</option>
+                <option value="Surgery">Surgery</option>
+                <option value="Eye_related">Eye related</option>
+                <option value="Teeth_related">Teeth related</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Additional Notes</label>
+            <textarea id="description" th:field="*{description}" rows="4" placeholder="Description about the problem"></textarea>
+        </div>
+
+
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>
+</body>
+</html>
