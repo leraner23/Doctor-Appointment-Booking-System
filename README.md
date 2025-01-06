@@ -7,3 +7,4 @@ Photo can be uploaded for profile of users.
 
 Note: 
 If you are using this Repo files then make sure to create the images folder inside the Appointment main folder where src, target etc exists.
+This project contains role based dashboard.
